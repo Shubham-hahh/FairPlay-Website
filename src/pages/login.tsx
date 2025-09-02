@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { supabase } from '@/lib/supabase';
 import { Topbar } from '@/components/ui/Topbar/Topbar';
 import styles from './login.module.css';
-
+import { useTranslation } from 'next-i18next';
 
 const TEXT = {
   title: 'Authentification',
@@ -38,6 +38,7 @@ type Tab = 'login' | 'register';
 
 export default function Auth() {
   const router = useRouter();
+  const { t } = useTranslation('common');
   const [activeTab, setActiveTab] = useState<Tab>('login');
 
   const [loginEmail, setLoginEmail] = useState('');
@@ -54,10 +55,6 @@ export default function Auth() {
   const [registerMessage, setRegisterMessage] = useState('');
   const [registerLoading, setRegisterLoading] = useState(false);
   const [redirectTo, setRedirectTo] = useState('/feed');
-  const [isLogInAutorised, setisLogInAutorised] = useState(false);
-  const [isSigningInAutorised, setIsSigningInAutorised] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-
 
   const resetErrors = useCallback(() => {
     setLoginError('');
@@ -84,14 +81,13 @@ export default function Auth() {
           }
         
       
-      } catch {
-        setLoginError(TEXT.loginerror);
-        setLoginError(TEXT.loginerror);
+      } catch (err) {
+        console.error('An error occurred:', err);
       } finally {
         setLoginLoading(false);
       }
     },
-    [loginEmail, loginPassword, loginLoading, router]
+    [loginEmail, loginPassword, loginLoading, router, redirectTo]
   );
 
   const handleRegister = useCallback(
@@ -142,7 +138,7 @@ export default function Auth() {
         setRegisterLoading(false);
       }
     },
-    [registerEmail, registerPassword, registerConfirmPassword, registerUsername, registerLoading]
+    [registerEmail, registerPassword, registerConfirmPassword, registerUsername, registerLoading, resetErrors]
   );
 
   const handleForgotPassword = useCallback(async () => {
@@ -164,7 +160,7 @@ export default function Auth() {
     } catch (err) {
       setLoginError(TEXT.emailSenededLoginWithoutPasswordError);
     }
-  }, [loginEmail]);
+  }, [loginEmail, resetErrors]);
 
   const fetchSettingEnabled = async (setting : string) => {
     const { data, error } = await supabase
@@ -177,10 +173,12 @@ export default function Auth() {
     return(!!data?.bool_value);
     };
 
-  const init = async () => {
-    setisLogInAutorised(await fetchSettingEnabled('isLogInAutorised'));
-    setIsSigningInAutorised(await fetchSettingEnabled('isSigningInAutorised'));
-  };
+  useEffect(() => {
+    const init = async () => {
+      await fetchSettingEnabled('isSigningInAutorised');
+    };
+    init();
+  }, []);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -195,7 +193,6 @@ export default function Auth() {
     if (redirect) {
       setRedirectTo(redirect);
     }
-    init();
     
   }, [router]);
 
@@ -207,7 +204,7 @@ export default function Auth() {
       </Head>
       <section className={styles.auth}>
         <div className={styles.left}>
-          <h1 className={styles.title}>{TEXT.title}</h1>
+          <h1 className={styles.title}>{t('welcome')}</h1>
 
           <div className={styles.tabs}>
             {(['login', 'register'] as Tab[]).map((tab) => (
@@ -303,8 +300,8 @@ export default function Auth() {
         </div>
         <aside className={styles.right} aria-hidden="true">
           <div className={styles.illustration}>
-            <h2>Welcome !</h2>
-            <p>Access high-quality videos</p>
+            <h2>{t('welcome')}</h2>
+            <p>{t('description')}</p>
           </div>
         </aside>
       </section>

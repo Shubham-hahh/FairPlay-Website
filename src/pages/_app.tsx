@@ -3,8 +3,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import type { AppProps } from "next/app";
 import { DevBanner } from '@/components/ui/InfoBanner/infoBanner';
 import { ToastProvider } from '@/components/ui/Toast/Toast';
+import { appWithTranslation } from 'next-i18next';
 
-export default function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ToastProvider>
       <DevBanner />
@@ -12,3 +13,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </ToastProvider>
   );
 }
+
+export default appWithTranslation(MyApp);

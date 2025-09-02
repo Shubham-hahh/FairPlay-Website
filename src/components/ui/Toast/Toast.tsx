@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import styles from './Toast.module.css';
 
 export type ToastKind = 'success' | 'error' | 'info';
@@ -67,12 +68,14 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 };
 
 export const ToastContainer: React.FC<{ toasts: ToastItem[]; onClose: (id: string) => void }> = ({ toasts, onClose }) => {
+  const { t } = useTranslation('common');
+
   return (
     <div className={styles.container} role="region" aria-label="Notifications">
       {toasts.map((t) => (
         <div key={t.id} className={`${styles.toast} ${styles[t.kind]}`} role="status" aria-live={t.kind === 'error' ? 'assertive' : 'polite'}>
           <div className={styles.message}>{t.message}</div>
-          <button className={styles.close} aria-label="Fermer" onClick={() => onClose(t.id)}>×</button>
+          <button className={styles.close} aria-label={t('close')} onClick={() => onClose(t.id)}>×</button>
         </div>
       ))}
     </div>

@@ -13,6 +13,7 @@ import styles from './mychannel.module.css';
 import { Topbar } from '@/components/ui/Topbar/Topbar'
 import { Sidebar } from '@/components/ui/Sidebar/Sidebar'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next';
 
 type ProfileData = {
   username: string;
@@ -57,6 +58,7 @@ const TEXT = {
 function MyChannelInner() {
   const router = useRouter();
   const { error: toastError, success: toastSuccess, info: toastInfo } = useToast();
+  const { t } = useTranslation('common');
 
   // Profile state
   const [profile, setProfile] = useState<ProfileData | null>(null);
@@ -287,8 +289,6 @@ function MyChannelInner() {
     router.push('/feed');
   }, [router]);
 
-// ...existing code...
-
   const handleUsernameChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setEditUsername(e.target.value);
   }, []);
@@ -436,8 +436,8 @@ function MyChannelInner() {
                   <div>
                     <h2>{profile.username}</h2>
                     <p>{editHandle}</p>
-                    {is_admin && <div className={styles.adminBadge}>{TEXT.admin}</div>}
-                    {is_moderator && <div className={styles.moderatorBadge}>{TEXT.moderator}</div>}
+                    {is_admin && <div className={styles.adminBadge}>{t('admin')}</div>}
+                    {is_moderator && <div className={styles.moderatorBadge}>{t('moderator')}</div>}
                   </div>
                 </div>
 

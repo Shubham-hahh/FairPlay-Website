@@ -11,10 +11,12 @@ import { fetchYoutubeDuration, parseISODuration } from '@/utils/videoHelpers';
 import { parseThemes } from '@/lib/utils';
 import type { Video } from '@/types';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import styles from './feed.module.css';
 
 
 export default function VideosPage() {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
@@ -89,8 +91,8 @@ export default function VideosPage() {
   return (
     <>
       <Head>
-        <title>FairPlay</title>
-        <meta name="description" content="FairPlay is a free platform for sharing, discovering and supporting cultural, scientific and creative videos." />
+        <title>{t('welcome')}</title>
+        <meta name="description" content={t('description')} />
       </Head>
       <Topbar />
       <div className="container-flex">
@@ -110,13 +112,12 @@ export default function VideosPage() {
             {loginwithoutpassword && (
               <div className={styles.popupOverlay} role="dialog" aria-modal="true">
                 <div className={styles.popupContent}>
-                  <h2>Login Successful</h2>
-                  <p>You have been logged in without a password. </p>
-                  <p>If you forgot your password you can set a new one</p>
-                  <button className={styles.button} onClick={() => setLoginwithoutpassword(false)}>Close</button>
-                  <button className={styles.buttonWhite} onClick={() => router.push("/resetpassword")}>Change My Password</button>
+                  <h2>{t('login_success')}</h2>
+                  <p>{t('password_reset_prompt')}</p>
+                  <button className={styles.button} onClick={() => setLoginwithoutpassword(false)}>{t('close')}</button>
+                  <button className={styles.buttonWhite} onClick={() => router.push("/resetpassword")}>{t('change_password')}</button>
                 </div>
-                </div>
+              </div>
             )}
           </main>
         </div>

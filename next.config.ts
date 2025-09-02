@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
+
   async rewrites() {
     return [
       { source: '/home', destination: '/index.html' },
