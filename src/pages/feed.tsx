@@ -32,17 +32,13 @@ export default function VideosPage() {
       if (user) {
         vids = await getRecommendedVideos(user.id);
       } else {
-    const { data, error: fetchError } = await supabase
-      .from('videos')
-      .select('id, title, description, type, url, youtube_id, user_id, quality_score, themes, duration, thumbnail, created_at')
-      .eq('is_verified', true)
-      .eq('is_refused', false)
-      .order('quality_score', { ascending: false });
+        const { data, error: fetchError } = await supabase
+            .from('videos')
+            .select('id, title, description, type, url, youtube_id, user_id, quality_score, themes, duration, thumbnail, created_at')
+            .order('quality_score', { ascending: false });
             
         if (fetchError) {
-          console.error("Error fetching videos:", fetchError.message);
-          setError(fetchError.message);
-          return;
+          throw new Error(fetchError.message);
         }
         
         vids = data || [];
@@ -67,16 +63,17 @@ export default function VideosPage() {
   }, []);
 
   useEffect(() => {
-        fetchVideos();
-        const params = new URLSearchParams(window.location.search);
-        const loginWithoutPassword = params.get('loginwithoutpassword');
-        if (loginWithoutPassword) {
-            setLoginwithoutpassword(true);
-            params.delete('loginwithoutpassword');
-            const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
-            router.replace(newUrl, undefined, { shallow: true });
-        }
-    }, [fetchVideos, router]);
+    
+    fetchVideos();
+    const params = new URLSearchParams(window.location.search);
+    const loginwithoutpassword= params.get('loginwithoutpassword');
+    if (loginwithoutpassword) {
+      setLoginwithoutpassword(true);
+    }
+    params.delete('loginwithoutpassword');
+    const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+    router.replace(newUrl, undefined, { shallow: true });
+    }, [fetchVideos]);
 
   const categories = React.useMemo(() => {
     const all = videos.flatMap(v => parseThemes(v.themes));
