@@ -5,6 +5,16 @@ Stack we're going for : Rust, Dioxus
 
 Wanna participate ? Feel free to join our developpement discord server : discord.gg/fairplayteam
 
+# Dependencies
+
+This project depends on rust and dioxus.
+
+Follow instructions at https://rustup.rs to install rustup (the rust toolchain manager)
+
+Then run: `rustup install default` to install a rust toolchain
+
+Finally run `cargo install dioxus-cli` to get the dioxus cli
+
 # Development
 
 The workspace contains a member crate for each of the web, desktop and mobile platforms, a `ui` crate for shared components and a `api` crate for shared backend logic:
