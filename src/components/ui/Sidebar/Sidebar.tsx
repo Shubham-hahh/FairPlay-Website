@@ -63,7 +63,7 @@ export const Sidebar: React.FC<Props> = ({ active }) => {
           </li>
           {isLoggedIn && (
             <li>
-              <Link href="/mychannel" className={active === 'channel' ? styles.active : ''}>
+              <Link href="/mychannel" className={active === 'mychannel' ? styles.active : ''}>
                 <FontAwesomeIcon icon={faUserCircle} className={styles.sidebarIcon} /> My Channel
               </Link>
             </li>

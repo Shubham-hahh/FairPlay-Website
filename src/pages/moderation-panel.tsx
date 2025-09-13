@@ -38,7 +38,7 @@ export default function AdminPanel() {
     const { data, error } = await supabase
       .from("videos")
       .select("*")
-      .eq("is_verified", false)
+      .eq("is_verified", !true)
       .eq("is_refused", false)
       .order("created_at", { ascending: true });
     if (error) {

@@ -419,7 +419,7 @@ function MyChannelInner() {
     <>
       <Topbar />
       <div className="page-wrapper container">
-        <Sidebar active="channel" />
+        <Sidebar active="mychannel" />
         <main className="main-content">
           <div className={styles.myChannelContainer}>
             <div className={styles.mainContent}>
