@@ -1,9 +1,21 @@
-# This is the new repository for the MVP of fairplay's website
-The repository of the current running website (fairplay.video), is right here => https://github.com/FairPlayTeam/FairPlay-Website_DEMO
+# FairPlay MVP, New Repository
 
-Stack we're going for : Rust, Dioxus
+This is the **new repository** for the MVP of FairPlay's website.
 
-Wanna participate ? Feel free to join our developpement discord server : discord.gg/fairplayteam
+➡️ The repository for the **currently running website** ([fairplay.video](https://fairplay.video)) can be found here: [FairPlay-Website\_DEMO](https://github.com/FairPlayTeam/FairPlay-Website_DEMO)
+
+
+## 🛠 Tech Stack
+
+* **Rust**
+* **Dioxus**
+
+
+## 🤝 Contribute
+
+Want to participate? Join our development community on Discord:
+👉 [discord.gg/fairplayteam](https://discord.gg/fairplayteam)
+
 
 ## Developer TODO List, Prioritized by Importance
 
