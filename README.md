@@ -1,4 +1,4 @@
-## This is the nex reposiroty for the MVP of fairplay's website
+## This is the new reposiroty for the MVP of fairplay's website
 The repository of the current running website (fairplay.video), is right here => https://github.com/FairPlayTeam/FairPlay-Website_DEMO
 
 Stack we're going for : Rust, Dioxus
