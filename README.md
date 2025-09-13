@@ -1,13 +1,13 @@
-## This is the new repository for the MVP of fairplay's website
+# This is the new repository for the MVP of fairplay's website
 The repository of the current running website (fairplay.video), is right here => https://github.com/FairPlayTeam/FairPlay-Website_DEMO
 
 Stack we're going for : Rust, Dioxus
 
 Wanna participate ? Feel free to join our developpement discord server : discord.gg/fairplayteam
 
-# Developer TODO List, Prioritized by Importance
+## Developer TODO List, Prioritized by Importance
 
-## 1. Core Infrastructure & Media Handling
+### 1. Core Infrastructure & Media Handling
 
 * **Video Storage Management**
 
@@ -25,9 +25,8 @@ Wanna participate ? Feel free to join our developpement discord server : discord
   * [ ] Use MinIO (S3-compatible) for storing video files and HLS chunks.
   * [ ] Ensure redundancy and access control (private/public buckets).
 
----
 
-## 2. User & Access Management
+### 2. User & Access Management
 
 * **Authentication & Connection System**
 
@@ -39,9 +38,8 @@ Wanna participate ? Feel free to join our developpement discord server : discord
   * [ ] Ensure private videos are only accessible by their owner.
   * [ ] Prevent unauthorized access via signed URLs or token-based validation.
 
----
 
-## 3. Admin & Moderation Tools
+### 3. Admin & Moderation Tools
 
 * **Admin & Moderator Dashboard**
 
@@ -49,9 +47,8 @@ Wanna participate ? Feel free to join our developpement discord server : discord
   * [ ] Ban users.
   * [ ] View reports and logs.
 
----
 
-## 4. Video Platform Features
+### 4. Video Platform Features
 
 * **Video Feed (Home / Explore)**
 
@@ -72,9 +69,9 @@ Wanna participate ? Feel free to join our developpement discord server : discord
   * [ ] Connect user accounts via OAuth.
   * [ ] Allow importing videos directly from YouTube channels.
 
----
 
-## 5. User Interaction & Engagement
+
+### 5. User Interaction & Engagement
 
 * **⭐ Rating System**
 
@@ -89,9 +86,9 @@ Wanna participate ? Feel free to join our developpement discord server : discord
     * Don’t notify me
     * Unsubscribe
 
----
 
-## 6. Creator Support & Monetization
+
+### 6. Creator Support & Monetization
 
 * **Support the Creator Button**
 
