@@ -1,8 +1,9 @@
-# FairPlay MVP, New Repository
+# FairPlay MVP, Frontend
 
 This is the **new repository** for the MVP of FairPlay's website.
 
 ➡️ The repository for the **currently running website** ([fairplay.video](https://fairplay.video)) can be found here: [FairPlay-Website\_DEMO](https://github.com/FairPlayTeam/FairPlay-Website_DEMO)
+➡️ You can find the backend code here : https://github.com/FairPlayTeam/backend
 
 ## 🛠 Tech Stack
 
